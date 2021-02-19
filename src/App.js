@@ -1,19 +1,26 @@
-import { useState } from "react";
+import React from "react";
 import { List } from "./List";
 
-function App() {
-  const [description, setDescription] = useState('クリック前の表示');
-
-  const changeDescription = () => {
-    setDescription('クリック後の表示です')
-  };
-  return (
-    <div>
-      {description}
-      <List title="取扱言語一覧" />
-      <button onClick={changeDescription}>ボタン</button>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {description: 'クリック前の表示'}
+  }
+  changeDescription(){
+    this.setState(
+      {description: 'クリック後の表示です'}
+    )
+  }
+  render(){
+    const {description} = this.state
+    return(
+      <div>
+        {description}
+        <List title= "取扱言語一覧" />
+        <button onClick={() => this.changeDescription()}>ボタン</button>
+      </div>
+    )
+  }
 }
 
 export default App;
